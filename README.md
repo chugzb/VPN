@@ -1,20 +1,20 @@
 # 2025 快速搭建个人VPN科学上网（保姆级教程）
 
-🚀 **最简单的搭建个人VPN方法** | 一键安装 | 支持所有主流协议 | 完全免费开源
+**最简单的搭建个人VPN方法** | 一键安装 | 支持所有主流协议 | 完全免费开源
 
 本教程教你如何**搭建个人VPN**服务器，实现科学上网。支持Shadowsocks、V2Ray、Xray等主流协议，适合VPN新手和技术小白。
 
-📖 **[点击查看详细图文教程](https://ujphlj5zb871.jp.larksuite.com/wiki/D8Huwy7w4i0KDNk3Xtxjf1zipT0?from=from_copylink)** | 🌐 **[雷豹云官网](https://hx.dxclouds.com/)**
+**[点击查看详细图文教程](https://ujphlj5zb871.jp.larksuite.com/wiki/D8Huwy7w4i0KDNk3Xtxjf1zipT0?from=from_copylink)** | **[雷豹云官网](https://hx.dxclouds.com/)**
 
-## 🎯 为什么选择搭建个人VPN？
+## 为什么选择搭建个人VPN？
 
-- ✅ **完全掌控**：自己的服务器，数据安全有保障
-- ✅ **成本低廉**：月费仅需几美元，比付费VPN便宜
-- ✅ **速度更快**：专属带宽，无需与他人共享
-- ✅ **稳定可靠**：避免商业VPN被封的风险
-- ✅ **学习技能**：掌握网络技术，提升个人能力
+- **完全掌控**：自己的服务器，数据安全有保障
+- **成本低廉**：月费仅需几美元，比付费VPN便宜
+- **速度更快**：专属带宽，无需与他人共享
+- **稳定可靠**：避免商业VPN被封的风险
+- **学习技能**：掌握网络技术，提升个人能力
 
-## 🛠️ 支持的VPN协议
+## 支持的VPN协议
 
 ### 1. Shadowsocks-Rust（推荐新手）
 - **文件**: `ss-rust.sh`
@@ -77,7 +77,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/chugzb/VPN/main/tcp-wss.sh)
 - **文件**: `tcp-window.sh`
 - **功能**: 优化系统TCP参数，提升网络性能
 
-## 📋 搭建个人VPN前的准备
+## 搭建个人VPN前的准备
 
 ### 服务器要求
 - **系统**: Ubuntu 18+, Debian 9+, CentOS 7+
@@ -88,7 +88,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/chugzb/VPN/main/tcp-wss.sh)
 - Vultr、DigitalOcean、Linode（新手友好）
 - 搬瓦工、RackNerd（性价比高）
 
-## 🚀 一键搭建个人VPN教程
+## 一键搭建个人VPN教程
 
 ### 超简单3步搭建
 1. **购买海外服务器**（月费$3起）
@@ -103,7 +103,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/chugzb/VPN/main/tcp-wss.sh)
 5. 复制生成的配置链接
 6. 导入手机/电脑客户端
 
-## 📱 个人VPN客户端下载
+## 个人VPN客户端下载
 
 搭建个人VPN后，需要在设备上安装客户端：
 
@@ -123,26 +123,26 @@ bash <(curl -fsSL https://raw.githubusercontent.com/chugzb/VPN/main/tcp-wss.sh)
 - **ClashX** - 简单易用
 - **V2rayU** - 轻量级
 
-## ⚠️ 搭建个人VPN注意事项
+## 搭建个人VPN注意事项
 
-- 🕒 确保服务器时区正确
-- 🔄 定期更新脚本保持最新
-- ⚖️ 遵守当地法律法规
-- 🎓 仅供学习技术研究
-- 🔒 建议定期更换密码
-- 📊 注意流量使用情况
+- 确保服务器时区正确
+- 定期更新脚本保持最新
+- 遵守当地法律法规
+- 仅供学习技术研究
+- 建议定期更换密码
+- 注意流量使用情况
 
-## 🆚 个人VPN vs 商业VPN对比
+## 个人VPN vs 商业VPN对比
 
 | 对比项目 | 搭建个人VPN | 商业VPN |
 |---------|------------|---------|
 | 月费成本 | $3-5 | $10-15 |
-| 速度 | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ |
-| 稳定性 | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ |
-| 隐私性 | ⭐⭐⭐⭐⭐ | ⭐⭐ |
+| 速度 | 极快 | 一般 |
+| 稳定性 | 极佳 | 一般 |
+| 隐私性 | 极佳 | 较差 |
 | 技术门槛 | 简单 | 无 |
 
-## 🔧 个人VPN故障排除
+## 个人VPN故障排除
 
 ### 搭建个人VPN常见问题
 
@@ -174,20 +174,20 @@ systemctl restart [服务名]
 journalctl -u [服务名] -f
 ```
 
-## 🏷️ 标签关键词
+## 标签关键词
 
 `搭建个人VPN` `科学上网` `VPN教程` `Shadowsocks` `V2Ray` `翻墙` `代理服务器` `一键安装` `VPN搭建` `个人代理` `海外服务器` `网络自由` `VPN脚本` `科学上网教程` `个人VPN服务器`
 
-## 📈 为什么选择我们的教程？
+## 为什么选择我们的教程？
 
-- ✅ **2025年最新**：持续更新，适配最新技术
-- ✅ **保姆级教程**：从零开始，小白也能学会
-- ✅ **完全免费**：开源项目，永久免费使用
-- ✅ **多协议支持**：覆盖所有主流VPN协议
-- ✅ **一键安装**：复制粘贴即可完成搭建
-- ✅ **技术支持**：遇到问题可以咨询
+- **2025年最新**：持续更新，适配最新技术
+- **保姆级教程**：从零开始，小白也能学会
+- **完全免费**：开源项目，永久免费使用
+- **多协议支持**：覆盖所有主流VPN协议
+- **一键安装**：复制粘贴即可完成搭建
+- **技术支持**：遇到问题可以咨询
 
-## 🌟 用户评价
+## 用户评价
 
 > "按照教程搭建个人VPN，比买现成的VPN便宜一半，速度还更快！" - 用户A
 
@@ -195,25 +195,25 @@ journalctl -u [服务名] -f
 
 > "支持多种协议，可以根据需要选择，非常实用的个人VPN搭建方案。" - 用户C
 
-## 📚 相关教程推荐
+## 相关教程推荐
 
 - [如何选择VPN服务器](https://hx.dxclouds.com/)
 - [VPN协议对比分析](https://hx.dxclouds.com/)
 - [科学上网安全指南](https://hx.dxclouds.com/)
 - [个人VPN优化技巧](https://hx.dxclouds.com/)
 
-## 🔗 友情链接
+## 友情链接
 
 - [雷豹云官网](https://hx.dxclouds.com/) - 专业VPN技术服务
 - [详细图文教程](https://ujphlj5zb871.jp.larksuite.com/wiki/D8Huwy7w4i0KDNk3Xtxjf1zipT0?from=from_copylink) - 飞书文档
 
-## 📄 许可证
+## 许可证
 
 MIT License - 完全开源免费
 
-## 🤝 贡献与反馈
+## 贡献与反馈
 
-欢迎提交Issue和Pull Request改进教程。如果这个搭建个人VPN的教程对你有帮助，请给我们一个⭐Star！
+欢迎提交Issue和Pull Request改进教程。如果这个搭建个人VPN的教程对你有帮助，请给我们一个Star！
 
 ---
 

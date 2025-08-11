@@ -64,8 +64,17 @@ get_user_config() {
     echo -e "${BLUE}=== VLESS Reality 配置 ===${NC}"
 
     # 端口配置
-    REALITY_PORT=3000
-    echo -e "${YELLOW}端口已固定为 3000${NC}"
+    while true; do
+        read -p "请输入端口号 (1-65535, 默认443): " REALITY_PORT
+        if [[ -z "$REALITY_PORT" ]]; then
+            REALITY_PORT=443
+            break
+        elif [[ "$REALITY_PORT" =~ ^[0-9]+$ ]] && [ "$REALITY_PORT" -ge 1 ] && [ "$REALITY_PORT" -le 65535 ]; then
+            break
+        else
+            echo -e "${RED}请输入有效的端口号 (1-65535)${NC}"
+        fi
+    done
 
     # UUID配置
     read -p "请输入UUID (留空自动生成): " REALITY_UUID

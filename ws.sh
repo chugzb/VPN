@@ -60,8 +60,17 @@ get_user_config() {
     echo -e "${BLUE}=== VMess WebSocket 配置 ===${NC}"
 
     # 端口配置
-    VMESS_PORT=3000
-    echo -e "${YELLOW}端口已固定为 3000${NC}"
+    while true; do
+        read -p "请输入端口号 (1-65535, 默认随机): " VMESS_PORT
+        if [[ -z "$VMESS_PORT" ]]; then
+            VMESS_PORT=$(shuf -i 10000-65000 -n 1)
+            break
+        elif [[ "$VMESS_PORT" =~ ^[0-9]+$ ]] && [ "$VMESS_PORT" -ge 1 ] && [ "$VMESS_PORT" -le 65535 ]; then
+            break
+        else
+            echo -e "${RED}请输入有效的端口号 (1-65535)${NC}"
+        fi
+    done
 
     # UUID配置
     read -p "请输入UUID (留空自动生成): " VMESS_UUID

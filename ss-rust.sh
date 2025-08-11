@@ -65,8 +65,17 @@ get_user_config() {
     echo -e "${BLUE}=== Shadowsocks-Rust 配置 ===${NC}"
 
     # 端口配置
-    SS_PORT=3000
-    echo -e "${YELLOW}端口已固定为 3000${NC}"
+    while true; do
+        read -p "请输入端口号 (1-65535, 默认随机): " SS_PORT
+        if [[ -z "$SS_PORT" ]]; then
+            SS_PORT=$(shuf -i 10000-65000 -n 1)
+            break
+        elif [[ "$SS_PORT" =~ ^[0-9]+$ ]] && [ "$SS_PORT" -ge 1 ] && [ "$SS_PORT" -le 65535 ]; then
+            break
+        else
+            echo -e "${RED}请输入有效的端口号 (1-65535)${NC}"
+        fi
+    done
 
     # 密码配置
     read -p "请输入密码 (留空自动生成): " SS_PASSWORD

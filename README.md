@@ -2,9 +2,19 @@
 
 **最简单的搭建个人VPN方法** | 一键安装 | 支持所有主流协议 | 完全免费开源
 
-本教程教你如何**搭建个人VPN**服务器，实现科学上网。支持Shadowsocks、V2Ray、Xray等主流协议，适合VPN新手和技术小白。
+---
 
-**[点击查看详细图文教程](https://ujphlj5zb871.jp.larksuite.com/wiki/D8Huwy7w4i0KDNk3Xtxjf1zipT0?from=from_copylink)** | **[雷豹云官网](https://hx.dxclouds.com/)**
+## **重要提醒：建议先查看详细图文教程**
+
+**[>>> 点击这里查看完整图文教程 <<<](https://ujphlj5zb871.jp.larksuite.com/wiki/D8Huwy7w4i0KDNk3Xtxjf1zipT0?from=from_copylink)**
+
+图文教程包含：服务器购买指南、详细安装步骤、客户端配置、常见问题解决等完整内容。
+
+**[雷豹云官网](https://hx.dxclouds.com/)** | 专业VPN技术服务
+
+---
+
+本教程教你如何**搭建个人VPN**服务器，实现科学上网。支持Shadowsocks、V2Ray、Xray等主流协议，适合VPN新手和技术小白。
 
 ## 为什么选择搭建个人VPN？
 
@@ -205,7 +215,6 @@ journalctl -u [服务名] -f
 ## 友情链接
 
 - [雷豹云官网](https://hx.dxclouds.com/) - 专业VPN技术服务
-- [详细图文教程](https://ujphlj5zb871.jp.larksuite.com/wiki/D8Huwy7w4i0KDNk3Xtxjf1zipT0?from=from_copylink) - 飞书文档
 
 ## 许可证
 

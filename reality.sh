@@ -238,7 +238,7 @@ setup_firewall() {
 # 显示配置信息
 show_config() {
     local server_ip=$(get_server_ip)
-    local vless_link="vless://${REALITY_UUID}@${server_ip}:${REALITY_PORT}?encryption=none&flow=xtls-rprx-vision&security=reality&sni=${DEST_SITE}&fp=chrome&pbk=${PUBLIC_KEY}&sid=${SHORT_ID}&type=tcp&headerType=none#Reality-VPN"
+    local vless_link="vless://${REALITY_UUID}@${server_ip}:${REALITY_PORT}?encryption=none&flow=xtls-rprx-vision&security=reality&sni=${DEST_SITE}&fp=chrome&pbk=${PUBLIC_KEY}&sid=${SHORT_ID}&type=tcp&headerType=none#雷豹云-Reality"
 
     clear
     echo -e "${GREEN}========================================${NC}"

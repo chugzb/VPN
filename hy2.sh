@@ -73,7 +73,7 @@ SNI：bing.com
 传输协议：tls
 跳过证书验证：ture
 ====================================
-hysteria2://$(echo -n "${hyPasswd}@$(getIP):${getPort}/?insecure=1&sni=bing.com#1024-Hysteria2")
+hysteria2://$(echo -n "${hyPasswd}@$(getIP):${getPort}/?insecure=1&sni=bing.com#雷豹云-Hysteria2")
 }
 EOF
 
@@ -81,7 +81,7 @@ EOF
 }
 
 client_hy2(){
-    hylink=$(echo -n "${hyPasswd}@$(getIP):${getPort}/?insecure=1&sni=bing.com#1024-Hysteria2")
+    hylink=$(echo -n "${hyPasswd}@$(getIP):${getPort}/?insecure=1&sni=bing.com#雷豹云-Hysteria2")
 
     echo
     echo "安装已经完成"

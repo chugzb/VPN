@@ -1,6 +1,6 @@
-# VPN 一键安装脚本集合
+# 雷豹云 VPN 一键安装脚本集合
 
-本仓库提供多种VPN协议的一键安装脚本，支持主流的代理协议和优化配置。
+本仓库由「雷豹云」维护，提供多种VPN协议的一键安装脚本。官网：https://hx.dxclouds.com/
 
 ## 支持的协议
 
@@ -11,7 +11,7 @@
 - **特点**: 高性能Rust实现，支持TCP+UDP
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/你的用户名/vpn/main/ss-rust.sh)
+bash <(curl -fsSL https://raw.githubusercontent.com/chugzb/VPN/main/ss-rust.sh)
 ```
 
 ### 2. VLESS Reality
@@ -22,7 +22,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/你的用户名/vpn/main/ss-
 - **默认SNI**: www.amazon.com
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/你的用户名/vpn/main/reality.sh)
+bash <(curl -fsSL https://raw.githubusercontent.com/chugzb/VPN/main/reality.sh)
 ```
 
 ### 3. VMess WebSocket
@@ -32,7 +32,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/你的用户名/vpn/main/rea
 - **特点**: 适合CDN中转
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/你的用户名/vpn/main/ws.sh)
+bash <(curl -fsSL https://raw.githubusercontent.com/chugzb/VPN/main/ws.sh)
 ```
 
 ### 4. Hysteria2
@@ -41,7 +41,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/你的用户名/vpn/main/ws.
 - **特点**: 基于QUIC的高速代理协议
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/你的用户名/vpn/main/hy2.sh)
+bash <(curl -fsSL https://raw.githubusercontent.com/chugzb/VPN/main/hy2.sh)
 ```
 
 ### 5. TCP+WSS 双协议
@@ -50,7 +50,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/你的用户名/vpn/main/hy2
 - **特点**: 同时支持两种协议
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/你的用户名/vpn/main/tcp-wss.sh)
+bash <(curl -fsSL https://raw.githubusercontent.com/chugzb/VPN/main/tcp-wss.sh)
 ```
 
 ## 辅助脚本

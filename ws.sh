@@ -218,7 +218,7 @@ show_config() {
     local server_ip=$(get_server_ip)
 
     # 生成VMess链接
-    local vmess_config="{\"v\":\"2\",\"ps\":\"VMess-WS\",\"add\":\"${server_ip}\",\"port\":\"${VMESS_PORT}\",\"id\":\"${VMESS_UUID}\",\"aid\":\"0\",\"net\":\"ws\",\"type\":\"none\",\"host\":\"\",\"path\":\"${WS_PATH}\",\"tls\":\"\"}"
+    local vmess_config="{\"v\":\"2\",\"ps\":\"雷豹云 VMess-WS\",\"add\":\"${server_ip}\",\"port\":\"${VMESS_PORT}\",\"id\":\"${VMESS_UUID}\",\"aid\":\"0\",\"net\":\"ws\",\"type\":\"none\",\"host\":\"\",\"path\":\"${WS_PATH}\",\"tls\":\"\"}"
     local vmess_link=$(echo -n "$vmess_config" | base64 -w 0)
 
     clear

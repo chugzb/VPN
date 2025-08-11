@@ -26,18 +26,29 @@
 
 ## 支持的VPN协议
 
-### 1. Shadowsocks-Rust（推荐新手）
+### 1. Hysteria2（推荐新手）
+- **文件**: `hy2.sh`
+- **协议**: Hysteria2
+- **特点**: 最简单快速的个人VPN搭建方案，新手友好
+- **优势**: 网速最快，游戏延迟最低，一键安装
+- **适用**: 搭建个人VPN首选，特别适合游戏和视频
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/chugzb/VPN/main/hy2.sh)
+```
+
+### 2. Shadowsocks-Rust（经典稳定）
 - **文件**: `ss-rust.sh`
 - **协议**: Shadowsocks
 - **加密**: aes-256-gcm
-- **特点**: 最简单的个人VPN搭建方案，高性能Rust实现
-- **适用**: 搭建个人VPN入门首选
+- **特点**: 经典的个人VPN搭建方案，高性能Rust实现
+- **适用**: 稳定可靠，兼容性好
 
 ```bash
 bash <(curl -fsSL https://raw.githubusercontent.com/chugzb/VPN/main/ss-rust.sh)
 ```
 
-### 2. VLESS Reality（最强隐蔽性）
+### 3. VLESS Reality（最强隐蔽性）
 - **文件**: `reality.sh`
 - **协议**: VLESS + Reality
 - **特点**: 2024年最新反审查技术，搭建个人VPN的顶级方案
@@ -48,7 +59,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/chugzb/VPN/main/ss-rust.sh)
 bash <(curl -fsSL https://raw.githubusercontent.com/chugzb/VPN/main/reality.sh)
 ```
 
-### 3. VMess WebSocket（CDN加速）
+### 4. VMess WebSocket（CDN加速）
 - **文件**: `ws.sh`
 - **协议**: VMess + WebSocket
 - **特点**: 搭建个人VPN后可配合CDN加速
@@ -56,16 +67,6 @@ bash <(curl -fsSL https://raw.githubusercontent.com/chugzb/VPN/main/reality.sh)
 
 ```bash
 bash <(curl -fsSL https://raw.githubusercontent.com/chugzb/VPN/main/ws.sh)
-```
-
-### 4. Hysteria2（极速体验）
-- **文件**: `hy2.sh`
-- **协议**: Hysteria2
-- **特点**: 搭建个人VPN的极速方案，基于QUIC协议
-- **优势**: 网速最快，游戏延迟最低
-
-```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/chugzb/VPN/main/hy2.sh)
 ```
 
 ### 5. TCP+WSS 双协议

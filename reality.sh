@@ -1,65 +1,163 @@
-#!/bin/sh
+#!/bin/bash
+
 # VLESS Reality 一键安装脚本
+# 自定义版本 - 支持多种伪装网站和优化配置
 
-if [[ $EUID -ne 0 ]]; then
-    clear
-    echo "Error: This script must be run as root!" 1>&2
-    exit 1
-fi
+set -e
 
-timedatectl set-timezone Asia/Shanghai
-v2uuid=$(cat /proc/sys/kernel/random/uuid)
+# 颜色定义
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m'
 
-read -t 15 -p "回车或等待15秒为默认端口443，或者自定义端口请输入(1-65535)："  getPort
-if [ -z $getPort ];then
-    getPort=443
-    echo ""
-fi
+# 预设的伪装网站列表
+DEST_SITES=(
+    "www.microsoft.com"
+    "www.apple.com"
+    "www.google.com"
+    "www.amazon.com"
+    "www.cloudflare.com"
+    "www.github.com"
+)
 
-echo
-
-read -t 30 -p "回车或等待30秒为默认域名 www.amazon.com，或者自定义SNI请输入："  getSni
-if [ -z $getSni ];then
-    getSni=www.amazon.com
-    echo ""
-fi
-
-getIP(){
-    local serverIP=
-    serverIP=$(curl -s -4 http://www.cloudflare.com/cdn-cgi/trace | grep "ip" | awk -F "[=]" '{print $2}')
-    if [[ -z "${serverIP}" ]]; then
-        serverIP=$(curl -s -6 http://www.cloudflare.com/cdn-cgi/trace | grep "ip" | awk -F "[=]" '{print $2}')
+# 检查root权限
+check_root() {
+    if [[ $EUID -ne 0 ]]; then
+        echo -e "${RED}错误: 此脚本需要root权限运行！${NC}"
+        exit 1
     fi
-    echo "${serverIP}"
 }
 
-install_xray(){ 
-    if [ -f "/usr/bin/apt-get" ]; then
-        apt-get update -y && apt-get upgrade -y
-        apt-get install -y gawk curl
+# 获取服务器IP
+get_server_ip() {
+    local ip
+    ip=$(curl -s -4 https://api.ipify.org 2>/dev/null)
+    if [[ -z "$ip" ]]; then
+        ip=$(curl -s -6 https://api6.ipify.org 2>/dev/null)
+    fi
+    if [[ -z "$ip" ]]; then
+        ip=$(hostname -I | awk '{print $1}')
+    fi
+    echo "$ip"
+}
+
+# 安装依赖
+install_dependencies() {
+    echo -e "${YELLOW}正在安装依赖包...${NC}"
+
+    if command -v apt-get >/dev/null 2>&1; then
+        apt-get update -y
+        apt-get install -y curl wget unzip
+    elif command -v yum >/dev/null 2>&1; then
+        yum update -y
+        yum install -y curl wget unzip epel-release
     else
-        yum update -y && yum upgrade -y
-        yum install -y epel-release
-        yum install -y gawk curl
+        echo -e "${RED}不支持的系统类型${NC}"
+        exit 1
     fi
-    bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install
 }
 
-reconfig(){
-    reX25519Key=$(/usr/local/bin/xray x25519)
-    rePrivateKey=$(echo "${reX25519Key}" | head -1 | awk '{print $3}')
-    rePublicKey=$(echo "${reX25519Key}" | tail -n 1 | awk '{print $3}')
+# 用户输入配置
+get_user_config() {
+    echo -e "${BLUE}=== VLESS Reality 配置 ===${NC}"
 
-cat >/usr/local/etc/xray/config.json<<EOF
+    # 端口配置
+    REALITY_PORT=3000
+    echo -e "${YELLOW}端口已固定为 3000${NC}"
+
+    # UUID配置
+    read -p "请输入UUID (留空自动生成): " REALITY_UUID
+    if [[ -z "$REALITY_UUID" ]]; then
+        if command -v uuidgen >/dev/null 2>&1; then
+            REALITY_UUID=$(uuidgen)
+        else
+            REALITY_UUID=$(cat /proc/sys/kernel/random/uuid)
+        fi
+    fi
+
+    # 伪装网站选择
+    echo -e "${YELLOW}请选择伪装网站:${NC}"
+    for i in "${!DEST_SITES[@]}"; do
+        echo "$((i+1))) ${DEST_SITES[$i]}"
+    done
+    echo "$((${#DEST_SITES[@]}+1))) 自定义"
+
+    while true; do
+        read -p "请选择 (1-$((${#DEST_SITES[@]}+1)), 默认1): " site_choice
+        site_choice=${site_choice:-1}
+
+        if [[ "$site_choice" =~ ^[0-9]+$ ]] && [ "$site_choice" -ge 1 ] && [ "$site_choice" -le $((${#DEST_SITES[@]}+1)) ]; then
+            if [ "$site_choice" -eq $((${#DEST_SITES[@]}+1)) ]; then
+                read -p "请输入自定义域名: " DEST_SITE
+                if [[ -z "$DEST_SITE" ]]; then
+                    echo -e "${RED}域名不能为空${NC}"
+                    continue
+                fi
+            else
+                DEST_SITE="${DEST_SITES[$((site_choice-1))]}"
+            fi
+            break
+        else
+            echo -e "${RED}请输入有效选项${NC}"
+        fi
+    done
+
+    # Short ID配置
+    read -p "请输入Short ID (留空自动生成): " SHORT_ID
+    if [[ -z "$SHORT_ID" ]]; then
+        SHORT_ID=$(openssl rand -hex 4)
+    fi
+}
+
+# 安装Xray
+install_xray() {
+    echo -e "${YELLOW}正在安装 Xray-core...${NC}"
+
+    bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install --beta
+
+    if [[ ! -f "/usr/local/bin/xray" ]]; then
+        echo -e "${RED}Xray 安装失败${NC}"
+        exit 1
+    fi
+
+    echo -e "${GREEN}Xray 安装完成${NC}"
+}
+
+# 生成密钥对
+generate_keys() {
+    echo -e "${YELLOW}正在生成密钥对...${NC}"
+
+    local key_output=$(/usr/local/bin/xray x25519)
+    PRIVATE_KEY=$(echo "$key_output" | head -1 | awk '{print $3}')
+    PUBLIC_KEY=$(echo "$key_output" | tail -1 | awk '{print $3}')
+
+    if [[ -z "$PRIVATE_KEY" ]] || [[ -z "$PUBLIC_KEY" ]]; then
+        echo -e "${RED}密钥生成失败${NC}"
+        exit 1
+    fi
+}
+
+# 生成配置文件
+generate_config() {
+    echo -e "${YELLOW}正在生成配置文件...${NC}"
+
+    mkdir -p /usr/local/etc/xray
+
+    cat > /usr/local/etc/xray/config.json << EOF
 {
+    "log": {
+        "loglevel": "warning"
+    },
     "inbounds": [
         {
-            "port": $getPort,
+            "port": ${REALITY_PORT},
             "protocol": "vless",
             "settings": {
                 "clients": [
                     {
-                        "id": "$v2uuid",
+                        "id": "${REALITY_UUID}",
                         "flow": "xtls-rprx-vision"
                     }
                 ],
@@ -70,17 +168,14 @@ cat >/usr/local/etc/xray/config.json<<EOF
                 "security": "reality",
                 "realitySettings": {
                     "show": false,
-                    "dest": "$getSni:443",
+                    "dest": "${DEST_SITE}:443",
                     "xver": 0,
                     "serverNames": [
-                        "$getSni"
+                        "${DEST_SITE}"
                     ],
-                    "privateKey": "$rePrivateKey",
-                    "minClientVer": "",
-                    "maxClientVer": "",
-                    "maxTimeDiff": 0,
+                    "privateKey": "${PRIVATE_KEY}",
                     "shortIds": [
-                        "88"
+                        "${SHORT_ID}"
                     ]
                 }
             }
@@ -95,55 +190,87 @@ cat >/usr/local/etc/xray/config.json<<EOF
             "protocol": "blackhole",
             "tag": "blocked"
         }
-    ]    
+    ]
 }
 EOF
-
-    systemctl enable xray.service && systemctl restart xray.service
-    rm -f tcp-wss.sh install-release.sh reality.sh
-
-cat >/usr/local/etc/xray/reclient.json<<EOF
-{
-===========配置参数=============
-代理模式：vless
-地址：$(getIP)
-端口：${getPort}
-UUID：${v2uuid}
-流控：xtls-rprx-vision
-传输协议：tcp
-Public key：${rePublicKey}
-底层传输：reality
-SNI: ${getSni}
-shortIds: 88
-====================================
-vless://${v2uuid}@$(getIP):${getPort}?encryption=none&flow=xtls-rprx-vision&security=reality&sni=${getSni}&fp=chrome&pbk=${rePublicKey}&sid=88&type=tcp&headerType=none#reality-vpn
-
 }
-EOF
+
+# 启动服务
+start_service() {
+    echo -e "${YELLOW}正在启动服务...${NC}"
+
+    systemctl daemon-reload
+    systemctl enable xray
+    systemctl restart xray
+
+    sleep 2
+
+    if systemctl is-active --quiet xray; then
+        echo -e "${GREEN}Xray 服务启动成功${NC}"
+    else
+        echo -e "${RED}Xray 服务启动失败${NC}"
+        systemctl status xray
+        exit 1
+    fi
+}
+
+# 配置防火墙
+setup_firewall() {
+    echo -e "${YELLOW}正在配置防火墙...${NC}"
+
+    if command -v ufw >/dev/null 2>&1; then
+        ufw allow ${REALITY_PORT}/tcp
+    elif command -v firewall-cmd >/dev/null 2>&1; then
+        firewall-cmd --permanent --add-port=${REALITY_PORT}/tcp
+        firewall-cmd --reload
+    fi
+}
+
+# 显示配置信息
+show_config() {
+    local server_ip=$(get_server_ip)
+    local vless_link="vless://${REALITY_UUID}@${server_ip}:${REALITY_PORT}?encryption=none&flow=xtls-rprx-vision&security=reality&sni=${DEST_SITE}&fp=chrome&pbk=${PUBLIC_KEY}&sid=${SHORT_ID}&type=tcp&headerType=none#Reality-VPN"
 
     clear
+    echo -e "${GREEN}========================================${NC}"
+    echo -e "${GREEN}  VLESS Reality 安装完成！${NC}"
+    echo -e "${GREEN}========================================${NC}"
+    echo -e "${YELLOW}服务器地址:${NC} ${server_ip}"
+    echo -e "${YELLOW}端口:${NC} ${REALITY_PORT}"
+    echo -e "${YELLOW}UUID:${NC} ${REALITY_UUID}"
+    echo -e "${YELLOW}流控:${NC} xtls-rprx-vision"
+    echo -e "${YELLOW}传输协议:${NC} tcp"
+    echo -e "${YELLOW}伪装网站:${NC} ${DEST_SITE}"
+    echo -e "${YELLOW}Public Key:${NC} ${PUBLIC_KEY}"
+    echo -e "${YELLOW}Short ID:${NC} ${SHORT_ID}"
+    echo -e "${GREEN}========================================${NC}"
+    echo -e "${YELLOW}VLESS链接:${NC}"
+    echo -e "${BLUE}${vless_link}${NC}"
+    echo -e "${GREEN}========================================${NC}"
+    echo -e "${YELLOW}管理命令:${NC}"
+    echo -e "启动: ${BLUE}systemctl start xray${NC}"
+    echo -e "停止: ${BLUE}systemctl stop xray${NC}"
+    echo -e "重启: ${BLUE}systemctl restart xray${NC}"
+    echo -e "状态: ${BLUE}systemctl status xray${NC}"
+    echo -e "${GREEN}========================================${NC}"
 }
 
-client_re(){
-    echo
-    echo "安装已经完成"
-    echo
-    echo "===========reality配置参数============"
-    echo "代理模式：vless"
-    echo "地址：$(getIP)"
-    echo "端口：${getPort}"
-    echo "UUID：${v2uuid}"
-    echo "流控：xtls-rprx-vision"
-    echo "传输协议：tcp"
-    echo "Public key：${rePublicKey}"
-    echo "底层传输：reality"
-    echo "SNI: ${getSni}"
-    echo "shortIds: 88"
-    echo "===================================="
-    echo "vless://${v2uuid}@$(getIP):${getPort}?encryption=none&flow=xtls-rprx-vision&security=reality&sni=${getSni}&fp=chrome&pbk=${rePublicKey}&sid=88&type=tcp&headerType=none#reality-vpn"
-    echo
+# 主函数
+main() {
+    clear
+    echo -e "${GREEN}VLESS Reality 一键安装脚本${NC}"
+    echo -e "${YELLOW}开始安装...${NC}"
+
+    check_root
+    install_dependencies
+    get_user_config
+    install_xray
+    generate_keys
+    generate_config
+    start_service
+    setup_firewall
+    show_config
 }
 
-install_xray
-reconfig
-client_re
+# 运行主函数
+main

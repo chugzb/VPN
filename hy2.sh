@@ -1,5 +1,5 @@
 #!/bin/sh
-# Hysteria2 一键安装脚本
+# Hysteria2 一键安装脚本 - 自定义版本
 
 if [[ $EUID -ne 0 ]]; then
     clear
@@ -10,10 +10,8 @@ fi
 timedatectl set-timezone Asia/Shanghai
 hyPasswd=$(cat /proc/sys/kernel/random/uuid)
 
-read -t 15 -p "回车或等待15秒为随机端口，或者自定义端口请输入(1-65535)："  getPort
-if [ -z $getPort ];then
-    getPort=$(shuf -i 2000-65000 -n 1)
-fi
+getPort=3000
+echo "端口已固定为 3000"
 
 getIP(){
     local serverIP=

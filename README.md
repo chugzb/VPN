@@ -10,7 +10,7 @@
 
 图文教程包含：服务器购买指南、详细安装步骤、客户端配置、常见问题解决等完整内容。
 
-**[雷豹云官网](https://hx.dxclouds.com/)** | 专业VPN技术服务
+**[雷豹云官网](https://hx.dxclouds.com/)** | 海外服务器提供商
 
 ---
 
@@ -95,8 +95,9 @@ bash <(curl -fsSL https://raw.githubusercontent.com/chugzb/VPN/main/tcp-wss.sh)
 - **网络**: 需要海外服务器（推荐美国、日本、新加坡）
 
 ### 推荐服务器商
+- **雷豹云**（推荐）- 专业海外服务器，性价比高
 - Vultr、DigitalOcean、Linode（新手友好）
-- 搬瓦工、RackNerd（性价比高）
+- 搬瓦工、RackNerd（备选方案）
 
 ## 一键搭建个人VPN教程
 
@@ -207,14 +208,14 @@ journalctl -u [服务名] -f
 
 ## 相关教程推荐
 
-- [如何选择VPN服务器](https://hx.dxclouds.com/)
+- [如何选择海外服务器](https://hx.dxclouds.com/)
+- [服务器购买指南](https://hx.dxclouds.com/)
 - [VPN协议对比分析](https://hx.dxclouds.com/)
-- [科学上网安全指南](https://hx.dxclouds.com/)
 - [个人VPN优化技巧](https://hx.dxclouds.com/)
 
 ## 友情链接
 
-- [雷豹云官网](https://hx.dxclouds.com/) - 专业VPN技术服务
+- [雷豹云官网](https://hx.dxclouds.com/) - 海外服务器提供商
 
 ## 许可证
 

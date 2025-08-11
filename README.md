@@ -1,6 +1,8 @@
 # 2025 快速搭建个人VPN科学上网（保姆级教程）
 
-本仓库由「雷豹云」维护，提供多种VPN协议的一键安装脚本。官网：https://hx.dxclouds.com/
+本仓库由「雷豹云」维护，提供多种VPN协议的一键安装脚本。
+
+📖 **[点击查看详细图文教程](https://ujphlj5zb871.jp.larksuite.com/wiki/D8Huwy7w4i0KDNk3Xtxjf1zipT0?from=from_copylink)** | 🌐 **[官网](https://hx.dxclouds.com/)**
 
 ## 支持的协议
 

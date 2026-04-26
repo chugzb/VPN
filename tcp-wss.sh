@@ -1,5 +1,5 @@
-#!/bin/sh
-# TCP+WSS 一键安装脚本
+##!/bin/sh
+# forum: https://hx.dxclouds.com
 
 if [[ $EUID -ne 0 ]]; then
     clear
@@ -177,23 +177,23 @@ EOF
 }
 
 install_ssrust(){
-    wget https://raw.githubusercontent.com/yeahwu/v2ray-wss/main/ss-rust.sh && bash ss-rust.sh
+    wget https://raw.githubusercontent.com/chugzb/VPN/main/ss-rust.sh && bash ss-rust.sh
 }
 
 install_reality(){
-    wget https://raw.githubusercontent.com/yeahwu/v2ray-wss/main/reality.sh && bash reality.sh
+    wget https://raw.githubusercontent.com/chugzb/VPN/main/reality.sh && bash reality.sh
 }
 
 install_hy2(){
-    wget https://raw.githubusercontent.com/yeahwu/v2ray-wss/main/hy2.sh && bash hy2.sh
+    wget https://raw.githubusercontent.com/chugzb/VPN/main/hy2.sh && bash hy2.sh
 }
 
 install_https(){
-    wget https://raw.githubusercontent.com/yeahwu/v2ray-wss/main/https.sh && bash https.sh
+    wget https://raw.githubusercontent.com/chugzb/VPN/main/https.sh && bash https.sh
 }
 
 client_v2ray(){
-    wslink=$(echo -n "{\"port\":${getPort},\"ps\":\"1024-wss\",\"tls\":\"tls\",\"id\":\"${v2uuid}\",\"aid\":0,\"v\":2,\"host\":\"${domain}\",\"type\":\"none\",\"path\":\"/${v2path}\",\"net\":\"ws\",\"add\":\"${domain}\",\"allowInsecure\":0,\"method\":\"none\",\"peer\":\"${domain}\",\"sni\":\"${domain}\"}" | base64 -w 0)
+    wslink=$(echo -n "{\"port\":${getPort},\"ps\":\"leibaoyun-wss\",\"tls\":\"tls\",\"id\":\"${v2uuid}\",\"aid\":0,\"v\":2,\"host\":\"${domain}\",\"type\":\"none\",\"path\":\"/${v2path}\",\"net\":\"ws\",\"add\":\"${domain}\",\"allowInsecure\":0,\"method\":\"none\",\"peer\":\"${domain}\",\"sni\":\"${domain}\"}" | base64 -w 0)
 
     echo
     echo "安装已经完成"
@@ -216,14 +216,14 @@ client_v2ray(){
 start_menu(){
     clear
     echo " ================================================== "
-    echo " 论坛：https://1024.day                              "
+    echo " 海外服务器：https://hx.dxclouds.com                              "
     echo " 介绍：一键安装SS-Rust，v2ray+wss，Reality或Hysteria2    "
     echo " 系统：Ubuntu、Debian、CentOS                        "
     echo " ================================================== "
     echo
     echo " 1. 安装 Shadowsocks-rust(用于落地)"
     echo " 2. 安装 v2ray+ws+tls"
-    echo " 3. 安装 Reality"
+    echo " 3. 安装 Reality(xtls-rprx-vision)"
     echo " 4. 安装 Hysteria2"
     echo " 5. 安装 Https正向代理"
     echo " 0. 退出脚本"

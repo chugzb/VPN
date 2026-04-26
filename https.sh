@@ -1,5 +1,6 @@
 #!/bin/sh
-# HTTPS 伪装一键安装脚本
+# HTTPS Poxy Installation Script
+# Author: https://hx.dxclouds.com
 
 if [[ $EUID -ne 0 ]]; then
     clear
@@ -7,7 +8,6 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 
-timedatectl set-timezone Asia/Shanghai
 Passwd=$(cat /dev/urandom | head -1 | md5sum | head -c 12)
 
 wget https://github.com/yeahwu/v2ray-wss/releases/download/v-monthly/caddy-v-monthly.tar.gz -O - | tar -xz -C /usr/local/
@@ -35,7 +35,7 @@ cat >/etc/caddy/https.caddyfile<<EOF
 :443, $domain
 route {
 	forward_proxy {
-		basic_auth 1024 $Passwd
+		basic_auth leibaoyun $Passwd
 		hide_ip
 		hide_via
 	}
@@ -73,10 +73,10 @@ cat >/etc/caddy/https.json<<EOF
 代理模式：Https正向代理
 地址：${domain}
 端口：443
-用户：1024
+用户：leibaoyun
 密码：${Passwd}
 ====================================
-http=$domain:443, username=1024, password=$Passwd, over-tls=true, tls-verification=true, tls-host=$domain, udp-relay=false, tls13=true, tag=https
+http=$domain:443, username=leibaoyun, password=$Passwd, over-tls=true, tls-verification=true, tls-host=$domain, udp-relay=false, tls13=true, tag=https
 }
 EOF
 
@@ -88,8 +88,8 @@ EOF
     echo "地址：${domain}"
     echo "端口：443"
     echo "密码：${Passwd}"
-    echo "用户：1024"
+    echo "用户：leibaoyun"
     echo
     echo "========================================="
-    echo "http=$domain:443, username=1024, password=$Passwd, over-tls=true, tls-verification=true, tls-host=$domain, udp-relay=false, tls13=true, tag=https"
+    echo "http=$domain:443, username=leibaoyun, password=$Passwd, over-tls=true, tls-verification=true, tls-host=$domain, udp-relay=false, tls13=true, tag=https"
     echo

@@ -34,7 +34,7 @@
 - **适用**: 搭建个人VPN首选，特别适合游戏和视频
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/chugzb/VPN/main/hy2.sh)
+wget https://raw.githubusercontent.com/chugzb/VPN/main/hy2.sh && bash hy2.sh
 ```
 
 ### 2. Shadowsocks-Rust（经典稳定）
@@ -45,7 +45,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/chugzb/VPN/main/hy2.sh)
 - **适用**: 稳定可靠，兼容性好
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/chugzb/VPN/main/ss-rust.sh)
+wget https://raw.githubusercontent.com/chugzb/VPN/main/ss-rust.sh && bash ss-rust.sh
 ```
 
 ### 3. VLESS Reality（最强隐蔽性）
@@ -56,7 +56,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/chugzb/VPN/main/ss-rust.sh)
 - **默认端口**: 443
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/chugzb/VPN/main/reality.sh)
+wget https://raw.githubusercontent.com/chugzb/VPN/main/reality.sh && bash reality.sh
 ```
 
 ### 4. VMess WebSocket（CDN加速）
@@ -66,7 +66,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/chugzb/VPN/main/reality.sh)
 - **优势**: 支持Cloudflare CDN，全球加速
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/chugzb/VPN/main/ws.sh)
+wget https://raw.githubusercontent.com/chugzb/VPN/main/ws.sh && bash ws.sh
 ```
 
 ### 5. TCP+WSS 双协议
@@ -75,7 +75,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/chugzb/VPN/main/ws.sh)
 - **特点**: 同时支持两种协议
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/chugzb/VPN/main/tcp-wss.sh)
+wget https://raw.githubusercontent.com/chugzb/VPN/main/tcp-wss.sh && bash tcp-wss.sh
 ```
 
 ## 辅助脚本

@@ -233,7 +233,7 @@ check_service_status() {
 show_client_config() {
     local server_ip
     server_ip=$(get_server_ip)
-    local connection_link="${HYSTERIA_PASSWORD}@${server_ip}:${SERVER_PORT}/?insecure=1&sni=bing.com#leibaoyun-Hysteria2"
+    local connection_link="${HYSTERIA_PASSWORD}@${server_ip}:${SERVER_PORT}/?insecure=1&sni=bing.com#leibaoyun-hy2"
 
     echo
     echo -e "${GREEN}===== Hysteria2 安装完成 =====${RESET}"

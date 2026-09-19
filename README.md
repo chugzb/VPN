@@ -34,7 +34,7 @@
 - **适用**: 搭建个人VPN首选，特别适合游戏和视频
 
 ```bash
-wget https://raw.githubusercontent.com/chugzb/VPN/main/hy2.sh && bash hy2.sh
+wget -qO /tmp/hy2.sh https://raw.githubusercontent.com/chugzb/VPN/main/hy2.sh && bash -n /tmp/hy2.sh && bash /tmp/hy2.sh
 ```
 
 ### 2. Shadowsocks-Rust（经典稳定）
@@ -45,7 +45,7 @@ wget https://raw.githubusercontent.com/chugzb/VPN/main/hy2.sh && bash hy2.sh
 - **适用**: 稳定可靠，兼容性好
 
 ```bash
-wget https://raw.githubusercontent.com/chugzb/VPN/main/ss-rust.sh && bash ss-rust.sh
+wget -qO /tmp/ss-rust.sh https://raw.githubusercontent.com/chugzb/VPN/main/ss-rust.sh && bash -n /tmp/ss-rust.sh && bash /tmp/ss-rust.sh
 ```
 
 ### 3. VLESS Reality（最强隐蔽性）
@@ -56,7 +56,7 @@ wget https://raw.githubusercontent.com/chugzb/VPN/main/ss-rust.sh && bash ss-rus
 - **默认端口**: 443
 
 ```bash
-wget https://raw.githubusercontent.com/chugzb/VPN/main/reality.sh && bash reality.sh
+wget -qO /tmp/reality.sh https://raw.githubusercontent.com/chugzb/VPN/main/reality.sh && bash -n /tmp/reality.sh && bash /tmp/reality.sh
 ```
 
 ### 4. VMess WebSocket（CDN加速）
@@ -66,7 +66,7 @@ wget https://raw.githubusercontent.com/chugzb/VPN/main/reality.sh && bash realit
 - **优势**: 支持Cloudflare CDN，全球加速
 
 ```bash
-wget https://raw.githubusercontent.com/chugzb/VPN/main/ws.sh && bash ws.sh
+wget -qO /tmp/ws.sh https://raw.githubusercontent.com/chugzb/VPN/main/ws.sh && bash -n /tmp/ws.sh && bash /tmp/ws.sh
 ```
 
 ### 5. TCP+WSS 双协议
@@ -75,7 +75,7 @@ wget https://raw.githubusercontent.com/chugzb/VPN/main/ws.sh && bash ws.sh
 - **特点**: 同时支持两种协议
 
 ```bash
-wget https://raw.githubusercontent.com/chugzb/VPN/main/tcp-wss.sh && bash tcp-wss.sh
+wget -qO /tmp/tcp-wss.sh https://raw.githubusercontent.com/chugzb/VPN/main/tcp-wss.sh && bash -n /tmp/tcp-wss.sh && bash /tmp/tcp-wss.sh
 ```
 
 ## 辅助脚本
